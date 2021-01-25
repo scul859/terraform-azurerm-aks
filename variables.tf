@@ -20,6 +20,12 @@ variable "client_secret" {
   default     = ""
 }
 
+variable "user_assigned_identity_id" {
+  description = "(Optional) The id of the user managed identity to assign to the aks cluster"
+  type = string
+  default = ""
+}
+
 variable "admin_username" {
   default     = "azureuser"
   description = "The username of the local administrator to be created on the Kubernetes cluster"

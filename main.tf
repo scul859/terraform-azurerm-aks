@@ -54,7 +54,11 @@ resource "azurerm_kubernetes_cluster" "main" {
   dynamic "identity" {
     for_each = var.client_id == "" || var.client_secret == "" ? ["identity"] : []
     content {
-      type = "SystemAssigned"
+      type = var.user_assigned_identity_id == "" ? "SystemAssigned" : "UserAssigned"
+      dynamic "user_assigned_identity" {
+        for_each = var.user_assigned_identity_id != "" ? ["user_assigned_identity"] : []
+        user_assigned_identity_id = var.user_assigned_identity_id
+      }
     }
   }
 
@@ -148,5 +152,4 @@ resource "azurerm_log_analytics_solution" "main" {
 
   tags = var.tags
 }
-
 
