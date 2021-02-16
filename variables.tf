@@ -91,6 +91,11 @@ variable "private_cluster_enabled" {
   type        = bool
   default     = false
 }
+variable "private_dns_zone_id" {
+  description = "ID of Private DNS Zone which should be delegated to this Cluster"
+  type        = string
+  default     = "System" 
+}
 
 variable "enable_kube_dashboard" {
   description = "Enable Kubernetes Dashboard."
